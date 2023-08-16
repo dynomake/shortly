@@ -38,7 +38,7 @@ public class ShortlyRepository {
 
     public String createLink(@NonNull String link) {
         if (configuration.isFixDuplicate() && codeLinkMap.containsValue(link))
-            return getKeyByValue(link);
+            return configuration.getDomain() + "/" + getKeyByValue(link);
 
         String code = codePattern.next(configuration.getCharactersInCode());
 
