@@ -1,6 +1,7 @@
 ## | `shortly`
 Very simple, beautiful and handy link shortener. You can get an instance of this service up on your server in five minutes!
-
+### | `Public instances:`
+* https://cc.dynomake.space
 ### | `How to setup on my host?`
 You need to have installed Java 17, Screens, Wget.
 1) Navigate to your installation directory:
