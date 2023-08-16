@@ -1,55 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Shortly - Done!</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      color: #333;
-      text-align: center;
-      padding: 30px;
-    }
-
-    h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-
-    button {
-      font-size: 24px;
-      padding: 10px 20px;
-      border: none;
-      background-color: #150000;
-      color: #fff;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #150000FF;
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"><link/>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<h1>Done!</h1>
-<button id="copyButton" th:attr="data-clipboard-text=${result}">Copy result</button>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+<body class="h-full bg-gray-900">
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 class="mt-10 text-4xl font-bold leading-9 tracking-tight text-white">Successfully shorted!</h2>
+        <h2 class="mt-4 text-xl leading-9 tracking-tight text-gray-100">
+            Your result link is <span id="result" class="font-semibold leading-6 text-indigo-500 hover:text-indigo-700" th:text="${result}">NULL</span>
+        </h2>
+    </div>
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <button id="copyButton" type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Copy result</button>
+    </div>
+</div>
+</body>
 <script>
   var copyButton = document.getElementById('copyButton');
-  var clipboard = new ClipboardJS(copyButton);
+  var textToCopy = document.getElementById('result').textContent;
 
-  clipboard.on('success', function(e) {
-    e.clearSelection();
-  });
+  copyButton.addEventListener('click', function() {
+    var tempElement = document.createElement('textarea');
+    tempElement.value = textToCopy;
 
-  clipboard.on('error', function(e) {
-    alert('Error in copy: ' + e.text);
+    document.body.appendChild(tempElement);
+    tempElement.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempElement);
+    copyButton.innerText = 'Copied!';
   });
 </script>
-</body>
 </html>

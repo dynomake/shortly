@@ -1,0 +1,9 @@
+# Shortly - dynomake's pet-project.
+# Official repo: https://github.com/dynomake/shortly
+# Support: https://dynomake.space
+# Public instance: https://cc.dynomake.space
+domain: "http://localhost:8080" # used only in content, please specify you real domain
+fixDuplicate: true # cannot be two shorted links with the same initial
+charactersInCode: 4 # how many characters should be in the code (used for: domain/code, minimal = 2)
+server:
+  port: 8080 # wannabe port for your instance
